@@ -42,7 +42,9 @@
 @property (nonatomic) Photo *pinkTriangle;
 
 
-
+@property (nonatomic) UICollectionViewFlowLayout *allShapesLayout;
+@property (nonatomic) UICollectionViewFlowLayout *shapesLayout;
+@property (nonatomic) UICollectionViewFlowLayout *colorsLayout;
 
 
 
@@ -98,9 +100,23 @@
     self.dataSource = [NSMutableArray new];
 
     
+    [self determineCollectionViewLayout];
     
     
+}
+
+-(void)determineCollectionViewLayout
+{
+    // do your collectionView flow layout configuration here
+    self.allShapesLayout = [UICollectionViewFlowLayout new];
+    // blah blah
     
+    self.shapesLayout = [UICollectionViewFlowLayout new];
+    // blah blah
+    
+    
+    self.colorsLayout = [UICollectionViewFlowLayout new];
+    // blah blah
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -188,31 +204,37 @@
 
 - (IBAction)SegmentValueChanged:(UISegmentedControl*)sender
 {
+    [self.dataSource removeAllObjects];
+    [self.myCollectionView.collectionViewLayout invalidateLayout];
+    
     switch (sender.selectedSegmentIndex) {
         case 0:
-           
             // show pictures as a grid
-            [self.dataSource removeAllObjects];
             [self.dataSource addObject:self.orangeSquare];// add the rest of the photos
             
-            
-            [self.myCollectionView reloadData];
-            
+            [self.myCollectionView setCollectionViewLayout:self.allShapesLayout animated:YES];
             break;
             
             // show picture according to child group
-//        case 1:
+        case 1:
             
-//            <#statements#>
-//            break;
+            [self.dataSource addObject:self.orangeShapes];
+            [self.dataSource addObject:self.pinkShapes];
+            [self.dataSource addObject:self.blueShapes];
+            
+            [self.myCollectionView setCollectionViewLayout:self.colorsLayout animated:YES];
+            break;
             
             // show pictures accroding to age group
-//        case 2:
-//            <#statements#>
-//            break;
-        default:
+        case 2:
+            [self.dataSource addObject:self.squares];
+            [self.dataSource addObject:self.circles];
+            [self.dataSource addObject:self.triangles];
+            
+            [self.myCollectionView setCollectionViewLayout:self.shapesLayout animated:YES];
             break;
     }
 
+    [self.myCollectionView reloadData];
 }
 @end

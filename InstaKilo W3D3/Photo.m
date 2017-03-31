@@ -10,7 +10,7 @@
 
 @implementation Photo
 
--(instancetype) initWithName:(NSString *)name shape:(Shape *)shape andColor:(Color *)color
+-(instancetype) initWithName:(NSString *)name shape:(Shape)shape andColor:(Color)color
 {
     if (self = [super init]) {
         self.photoName = name;

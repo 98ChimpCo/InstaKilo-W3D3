@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, Shape) {
 
 typedef NS_ENUM(NSInteger, Color) {
     Orange,
-    Green,
+    Pink,
     Blue
 };
 //typedef enum{
@@ -35,10 +35,10 @@ typedef NS_ENUM(NSInteger, Color) {
 
 @property (nonatomic) NSString *photoName;
 
-@property (nonatomic) Shape *shape;
-@property (nonatomic) Color *color;
+@property (nonatomic) Shape shape;
+@property (nonatomic) Color color;
 
--(instancetype) initWithName:(NSString *)name shape:(Shape *)shape andColor:(Color *)color;
+-(instancetype) initWithName:(NSString *)name shape:(Shape)shape andColor:(Color)color;
 -(Shape)convertShape:(NSString *)Shape;
 
 @end
